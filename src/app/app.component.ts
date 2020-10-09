@@ -9,12 +9,17 @@ import { User } from './auth-form/auth-form.interface';
 })
 export class AppComponent {
     title = 'angular-pro';
+    rememberMe = false;
 
     createUser(user: User) {
         console.log('Create account', user);
     }
 
     loginUser(user: User) {
-        console.log('Login', user);
+        console.log('Login', user, this.rememberMe);
+    }
+
+    rememberUser(remember: boolean) {
+        this.rememberMe = remember;
     }
 }

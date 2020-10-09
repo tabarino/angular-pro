@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
+import { AuthRememberComponent } from './auth-remember/auth-remember.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        AuthFormComponent
+        AuthFormComponent,
+        AuthRememberComponent
     ],
     imports: [
         BrowserModule,
