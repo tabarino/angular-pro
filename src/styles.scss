@@ -103,6 +103,10 @@ app-root > div {
     display: flex;
 }
 
+content-projection > div {
+    display: flex;
+}
+
 form {
     flex: 1 0;
     padding: 0 40px;
