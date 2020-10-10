@@ -8,7 +8,7 @@ import {
     OnInit,
     Output,
     QueryList,
-    ViewChild
+    ViewChildren
 } from '@angular/core';
 
 import { User } from './auth-form.interface';
@@ -24,7 +24,7 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
     showMessage: boolean;
     @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
     @ContentChildren(AuthRememberComponent) remember: QueryList<AuthRememberComponent>;
-    @ViewChild(AuthMessageComponent) message: AuthMessageComponent;
+    @ViewChildren(AuthMessageComponent) message: QueryList<AuthMessageComponent>;
 
     constructor(private cd: ChangeDetectorRef) { }
 
@@ -42,8 +42,12 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
     ngAfterViewInit(): void {
         console.log(this.message);
 
-        this.message.days = 30;
-        this.cd.detectChanges();
+        if (this.message) {
+            this.message.forEach((message) => {
+                message.days = 30;
+            });
+            this.cd.detectChanges();
+        }
 
         console.log(this.message);
     }
