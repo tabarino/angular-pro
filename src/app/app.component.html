@@ -1,6 +1,6 @@
 <div>
     <div #entry></div>
-    <ng-container [ngTemplateOutlet]="tpl"></ng-container>
+    <ng-container [ngTemplateOutlet]="tpl" [ngTemplateOutletContext]="ctx"></ng-container>
     <ng-template #tpl let-name let-location="location">
         {{ name }}: {{ location }}
     </ng-template>
