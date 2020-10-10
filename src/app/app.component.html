@@ -1,5 +1,9 @@
 <div>
-    <example-one></example-one>
-    <example-two></example-two>
-    <example-three></example-three>
+    <button (click)="addProp()">Add Property</button>
+    <button (click)="changeUser()">Change User Object</button>
+    <button (click)="changeName()">Change Name Property</button>
+    <div class="users">
+        <example-one [user]="user"></example-one>
+        <example-two [user]="user"></example-two>
+    </div>
 </div>
