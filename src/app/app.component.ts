@@ -1,14 +1,11 @@
 import {
     AfterViewInit,
-    ChangeDetectorRef,
-    Component,
-    ComponentFactoryResolver, ComponentRef,
+    Component, TemplateRef,
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
 
 import { User } from './auth-form/auth-form.interface';
-import { AuthFormComponent } from './auth-form/auth-form.component';
 
 @Component({
     selector: 'app-root',
@@ -16,32 +13,16 @@ import { AuthFormComponent } from './auth-form/auth-form.component';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-    component: ComponentRef<AuthFormComponent>;
     @ViewChild('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
+    @ViewChild('tpl') tpl: TemplateRef<any>;
 
-    constructor(
-        private resolver: ComponentFactoryResolver,
-        private cd: ChangeDetectorRef
-    ) { }
+    constructor() { }
 
     ngAfterViewInit(): void {
-        const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-        this.entry.createComponent(authFormFactory);
-        this.component = this.entry.createComponent(authFormFactory, 0);
-        this.component.instance.title = 'Create Account';
-        this.component.instance.submitted.subscribe(this.loginUser);
-        this.cd.detectChanges();
+        this.entry.createEmbeddedView(this.tpl);
     }
 
     loginUser(user: User) {
         console.log('Login', user);
-    }
-
-    moveComponent() {
-        this.entry.move(this.component.hostView, 1);
-    }
-
-    destroyComponent() {
-        this.component.destroy();
     }
 }
