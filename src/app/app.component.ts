@@ -2,7 +2,7 @@ import {
     AfterViewInit,
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver,
+    ComponentFactoryResolver, ComponentRef,
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
@@ -16,6 +16,7 @@ import { AuthFormComponent } from './auth-form/auth-form.component';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
+    component: ComponentRef<AuthFormComponent>;
     @ViewChild('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
 
     constructor(
@@ -25,13 +26,17 @@ export class AppComponent implements AfterViewInit {
 
     ngAfterViewInit(): void {
         const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-        const component = this.entry.createComponent(authFormFactory);
-        component.instance.title = 'Create Account';
-        component.instance.submitted.subscribe(this.loginUser);
+        this.component = this.entry.createComponent(authFormFactory);
+        this.component.instance.title = 'Create Account';
+        this.component.instance.submitted.subscribe(this.loginUser);
         this.cd.detectChanges();
     }
 
     loginUser(user: User) {
         console.log('Login', user);
+    }
+
+    destroyComponent() {
+        this.component.destroy();
     }
 }
