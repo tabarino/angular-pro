@@ -1,25 +1,35 @@
-import { Component } from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectorRef,
+    Component,
+    ComponentFactoryResolver,
+    ViewChild,
+    ViewContainerRef
+} from '@angular/core';
 
 import { User } from './auth-form/auth-form.interface';
+import { AuthFormComponent } from './auth-form/auth-form.component';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-    title = 'angular-pro';
-    rememberMe = false;
+export class AppComponent implements AfterViewInit {
+    @ViewChild('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
 
-    createUser(user: User) {
-        console.log('Create account', user);
+    constructor(
+        private resolver: ComponentFactoryResolver,
+        private cd: ChangeDetectorRef
+    ) { }
+
+    ngAfterViewInit(): void {
+        const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
+        const component = this.entry.createComponent(authFormFactory);
+        this.cd.detectChanges();
     }
 
     loginUser(user: User) {
-        console.log('Login', user, this.rememberMe);
-    }
-
-    rememberUser(remember: boolean) {
-        this.rememberMe = remember;
+        console.log('Login', user);
     }
 }
