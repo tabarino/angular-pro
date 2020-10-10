@@ -26,6 +26,7 @@ export class AppComponent implements AfterViewInit {
     ngAfterViewInit(): void {
         const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
         const component = this.entry.createComponent(authFormFactory);
+        component.instance.title = 'Create Account';
         this.cd.detectChanges();
     }
 
