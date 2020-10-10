@@ -4,10 +4,12 @@ import {
     ChangeDetectorRef,
     Component,
     ContentChildren,
+    ElementRef,
     EventEmitter,
     OnInit,
     Output,
     QueryList,
+    ViewChild,
     ViewChildren
 } from '@angular/core';
 
@@ -25,6 +27,7 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
     @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
     @ContentChildren(AuthRememberComponent) remember: QueryList<AuthRememberComponent>;
     @ViewChildren(AuthMessageComponent) message: QueryList<AuthMessageComponent>;
+    @ViewChild('email') email: ElementRef;
 
     constructor(private cd: ChangeDetectorRef) { }
 
@@ -40,7 +43,7 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
     }
 
     ngAfterViewInit(): void {
-        console.log(this.message);
+        console.log(this.email);
 
         if (this.message) {
             this.message.forEach((message) => {
@@ -48,8 +51,6 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
             });
             this.cd.detectChanges();
         }
-
-        console.log(this.message);
     }
 
     onSubmit(value: User) {
