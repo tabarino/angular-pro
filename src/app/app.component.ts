@@ -1,5 +1,5 @@
 import {
-    AfterViewInit,
+    AfterViewInit, ChangeDetectorRef,
     Component, TemplateRef,
     ViewChild,
     ViewContainerRef
@@ -16,10 +16,14 @@ export class AppComponent implements AfterViewInit {
     @ViewChild('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
     @ViewChild('tpl') tpl: TemplateRef<any>;
 
-    constructor() { }
+    constructor(private cd: ChangeDetectorRef) { }
 
     ngAfterViewInit(): void {
-        this.entry.createEmbeddedView(this.tpl);
+        this.entry.createEmbeddedView(this.tpl, {
+            $implicit: 'Ivan Tabarino',
+            location: 'Portugal, PT'
+        });
+        this.cd.detectChanges();
     }
 
     loginUser(user: User) {

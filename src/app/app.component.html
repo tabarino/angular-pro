@@ -1,4 +1,6 @@
 <div>
     <div #entry></div>
-    <ng-template #tpl>Ivan Tabarino: Portugal, PT</ng-template>
+    <ng-template #tpl let-name let-location="location">
+        {{ name }}: {{ location }}
+    </ng-template>
 </div>
