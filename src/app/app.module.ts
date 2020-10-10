@@ -5,10 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { AuthFormModule } from './auth-form/auth-form.module';
 
 import { AppComponent } from './app.component';
+import { OneComponent } from './one/one.component';
+import { TwoComponent } from './two/two.component';
+import { ThreeComponent } from './three/three.component';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        OneComponent,
+        TwoComponent,
+        ThreeComponent
     ],
     imports: [
         BrowserModule,
