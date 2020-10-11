@@ -9,6 +9,7 @@ import { OneComponent } from './one/one.component';
 import { TwoComponent } from './two/two.component';
 import { ThreeComponent } from './three/three.component';
 import { CreditCardDirective } from './credit-card/credit-card.directive';
+import { TooltipDirective } from './tooltip/tooltip.directive';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { CreditCardDirective } from './credit-card/credit-card.directive';
         OneComponent,
         TwoComponent,
         ThreeComponent,
-        CreditCardDirective
+        CreditCardDirective,
+        TooltipDirective
     ],
     imports: [
         BrowserModule,
