@@ -2,15 +2,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthFormModule } from './auth-form/auth-form.module';
+import { AuthFormModule } from './components/auth-form/auth-form.module';
 
 import { AppComponent } from './app.component';
-import { OneComponent } from './one/one.component';
-import { TwoComponent } from './two/two.component';
-import { ThreeComponent } from './three/three.component';
-import { CreditCardDirective } from './credit-card/credit-card.directive';
-import { TooltipDirective } from './tooltip/tooltip.directive';
-import { MyForDirective } from './my-for/my-for.directive';
+import { OneComponent } from './components/one/one.component';
+import { TwoComponent } from './components/two/two.component';
+import { ThreeComponent } from './components/three/three.component';
+import { CreditCardDirective } from './directives/credit-card/credit-card.directive';
+import { TooltipDirective } from './directives/tooltip/tooltip.directive';
+import { MyForDirective } from './directives/my-for/my-for.directive';
+import { FilesizePipe } from './pipes/filesize/filesize.pipe';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { MyForDirective } from './my-for/my-for.directive';
         ThreeComponent,
         CreditCardDirective,
         TooltipDirective,
-        MyForDirective
+        MyForDirective,
+        FilesizePipe
     ],
     imports: [
         BrowserModule,
