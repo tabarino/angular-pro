@@ -1,3 +1,13 @@
 <div class="stock-inventory">
-    Hello World!
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div formGroupName="store">
+            <input formControlName="branch" type="text" placeholder="Branch Id">
+            <input formControlName="code" type="text" placeholder="Manager Code">
+        </div>
+        <br>
+        <div class="stock-inventory__buttons">
+            <button type="submit" [disabled]="form.invalid">Order Stock</button>
+        </div>
+        <pre>{{ form.value | json }}</pre>
+    </form>
 </div>
