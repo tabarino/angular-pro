@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'stock-products',
@@ -12,5 +12,9 @@ export class StockProductsComponent implements OnInit {
     constructor() { }
 
     ngOnInit(): void {
+    }
+
+    get stocks() {
+        return (this.parent.get('stock') as FormArray).controls;
     }
 }
