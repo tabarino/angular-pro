@@ -1,7 +1,7 @@
 <div class="stock-inventory">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <stock-branch [parent]="form"></stock-branch>
-        <stock-selector [parent]="form" [products]="product"></stock-selector>
+        <stock-selector [parent]="form" [products]="product" (added)="addStock($event)"></stock-selector>
         <stock-products [parent]="form"></stock-products>
         <br>
         <div class="stock-inventory__buttons">

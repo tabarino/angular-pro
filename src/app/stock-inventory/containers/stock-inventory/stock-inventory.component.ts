@@ -40,6 +40,11 @@ export class StockInventoryComponent implements OnInit {
         });
     }
 
+    addStock(stock) {
+        const control = this.form.get('stock') as FormArray;
+        control.push(this.createStock(stock));
+    }
+
     onSubmit() {
         console.log('Submit: ', this.form.value);
     }
