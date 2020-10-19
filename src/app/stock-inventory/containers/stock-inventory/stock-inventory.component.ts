@@ -12,6 +12,7 @@ import { forkJoin } from 'rxjs';
 export class StockInventoryComponent implements OnInit {
     products: Product[];
     productMap: Map<number, Product>;
+    total: number;
     form = this.fb.group({
         store: this.fb.group({
             branch: '',
@@ -27,12 +28,21 @@ export class StockInventoryComponent implements OnInit {
         const cart = this.stockService.getCartItems();
         const products = this.stockService.getProducts();
 
-        forkJoin(cart, products).subscribe(([cartItems, productItems]: [Item[], Product[]]) => {
+        forkJoin([cart, products]).subscribe(([cartItems, productItems]: [Item[], Product[]]) => {
             const myMap = productItems.map<[number, Product]>(product => [product.id, product]);
             this.productMap = new Map<number, Product>(myMap);
             this.products = productItems;
             cartItems.forEach(item => this.addStock(item));
+
+            this.calculateTotal(this.form.get('stock').value);
+            this.form.get('stock').valueChanges.subscribe(value => this.calculateTotal(value));
         });
+    }
+
+    calculateTotal(value: Item[]) {
+        this.total = value.reduce((prev, next) => {
+            return prev + (next.quantity * this.productMap.get(next.product_id).price);
+        }, 0);
     }
 
     createStock(stock) {
