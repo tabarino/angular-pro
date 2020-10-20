@@ -4,8 +4,7 @@
             <option value="">Select Stock</option>
             <option *ngFor="let product of products" [ngValue]="product.id">{{ product.name }}</option>
         </select>
-        <input type="number" step="10" min="10" max="1000" formControlName="quantity">
-        <stock-counter [step]="10" [min]="10" [max]="1000"></stock-counter>
+        <stock-counter [step]="10" [min]="10" [max]="1000" formControlName="quantity"></stock-counter>
         <button type="button" (click)="onAdd()">Add Stock</button>
     </div>
 </div>
