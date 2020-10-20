@@ -19,5 +19,21 @@ export class StockSelectorComponent implements OnInit {
 
     onAdd() {
         this.added.emit(this.parent.get('selector').value);
+
+        this.parent.get('selector').reset({
+            product_id: '',
+            quantity: 10
+        });
+
+        // The patchValue is used to changed only one of the parameters
+        // this.parent.get('selector').patchValue({
+        //     product_id: ''
+        // });
+
+        // The setValue is used to changed all the values, but it doesn't reset the form
+        // this.parent.get('selector').setValue({
+        //     product_id: '',
+        //     quantity: 10
+        // });
     }
 }
