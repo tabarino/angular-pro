@@ -19,6 +19,7 @@ export class StockCounterComponent implements OnInit, ControlValueAccessor {
     @Input() max = 1000;
 
     value = 10;
+    focus: boolean;
 
     private onTouch: () => void;
     private onModelChange: (value) => void;
@@ -54,5 +55,34 @@ export class StockCounterComponent implements OnInit, ControlValueAccessor {
             this.value = this.value - this.step;
             this.onModelChange(this.value);
         }
+    }
+
+    onKeyDown(event: KeyboardEvent) {
+        const handlers = {
+            ArrowDown: () => this.decrement(),
+            ArrowUp: () => this.increment()
+        };
+
+        if (handlers[event.code]) {
+            handlers[event.code]();
+            event.preventDefault();
+            event.stopPropagation();
+        }
+
+        this.onTouch();
+    }
+
+    onBlur(event: FocusEvent) {
+        this.focus = false;
+        event.preventDefault();
+        event.stopPropagation();
+        this.onTouch();
+    }
+
+    onFocus(event: FocusEvent) {
+        this.focus = true;
+        event.preventDefault();
+        event.stopPropagation();
+        this.onTouch();
     }
 }
