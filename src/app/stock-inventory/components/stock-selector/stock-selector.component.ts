@@ -17,6 +17,19 @@ export class StockSelectorComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    get notSelected() {
+        return (
+            !this.parent.get('selector.product_id').value
+        );
+    }
+
+    get stockExists() {
+        return (
+            this.parent.hasError('stockExists') &&
+            this.parent.get('selector.product_id').dirty
+        );
+    }
+
     onAdd() {
         this.added.emit(this.parent.get('selector').value);
 
