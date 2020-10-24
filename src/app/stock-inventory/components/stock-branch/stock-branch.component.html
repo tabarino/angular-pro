@@ -7,6 +7,9 @@
         <div class="error" *ngIf="isInvalidBranch">
             Invalid branch code: 1 letter, 3 numbers
         </div>
+        <div class="error" *ngIf="unknown">
+            Unknown Branch, please check the Id
+        </div>
         <input formControlName="code" type="text" placeholder="Manager Code">
         <div class="error" *ngIf="required('code')">
             Manager Code is required

@@ -22,6 +22,13 @@ export class StockBranchComponent implements OnInit {
         );
     }
 
+    get unknown() {
+        return(
+            this.parent.get('store.branch').hasError('unknownBranch') &&
+            this.parent.get('store.branch').dirty
+        );
+    }
+
     required(name: string) {
         return (
             this.parent.get(`store.${ name }`).hasError('required') &&

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CART, PRODUCTS } from '../src/db-data';
+import { BRANCHES, CART, PRODUCTS } from '../src/db-data';
 
 export function getCart(req: Request, res: Response) {
     res.status(200).json({ payload: Object.values(CART) });
@@ -9,10 +9,15 @@ export function getProducts(req: Request, res: Response) {
     res.status(200).json({ payload: Object.values(PRODUCTS) });
 }
 
-// export function getCourseById(req: Request, res: Response) {
-//     const courseId = req.params['id'];
-//     const courses: any = Object.values(COURSES);
-//     const course = courses.find(course => course.id == courseId);
-//
-//     res.status(200).json(course);
-// }
+export function getBranches(req: Request, res: Response) {
+    res.status(200).json({ payload: Object.values(BRANCHES) });
+}
+
+export function getBranchById(req: Request, res: Response) {
+    const queryParams = req.query;
+    const branchId = queryParams.id;
+    const branches: any = Object.values(BRANCHES);
+    const branch = branches.find(searchBranch => searchBranch.id == branchId);
+
+    res.status(200).json(branch);
+}

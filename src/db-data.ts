@@ -10,3 +10,10 @@ export const PRODUCTS: any = [
     { id: 4, name: 'Iphone', price: 900 },
     { id: 5, name: 'Apple Watch', price: 600 }
 ];
+
+export const BRANCHES: any = [
+    { id: 'B182' },
+    { id: 'A779' },
+    { id: 'C390' },
+    { id: 'R262' }
+];
